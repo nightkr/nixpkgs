@@ -2,13 +2,13 @@
 
 buildGoModule rec {
   pname = "kube3d";
-  version = "5.3.0";
+  version = "5.4.1";
 
   src = fetchFromGitHub {
     owner = "rancher";
     repo = "k3d";
     rev = "v${version}";
-    sha256 = "sha256-ZuUjk1wb7iRZX+OpjLJHp1T0WYNjCHU6DpYF4V/heVc=";
+    sha256 = "sha256-DVQrD4JMei9yRFzuiVb6AcydEupNSlpgYLfGWWRiaao=";
   };
 
   vendorSha256 = null;
@@ -18,7 +18,7 @@ buildGoModule rec {
   excludedPackages = "\\(tools\\|docgen\\)";
 
   ldflags =
-    let t = "github.com/rancher/k3d/v5/version"; in
+    let t = "github.com/k3d-io/k3d/v5/version"; in
     [ "-s" "-w" "-X ${t}.Version=v${version}" "-X ${t}.K3sVersion=v${k3sVersion}" ];
 
   doCheck = false;
